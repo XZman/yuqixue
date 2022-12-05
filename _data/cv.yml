@@ -26,21 +26,31 @@
   type: time_table
   contents:
     - title: Graduate Research Assistant
-      institution: <a href="https://platformxlab.github.io/">Systems Platform Research Lab</a>, UIUC
+      institution: <a href="https://platformxlab.github.io/">Systems Platform Research Group</a>, UIUC
       year: 2021 - Now
     - title: Graduate Teaching Assistant
       institution: <a href="https://courses.grainger.illinois.edu/ece511/fa2022/">ECE 511</a>, UIUC
       year: Fall 2022
+    - title: Undergraduate Grader
+      institution: ECE 310, UIUC
+      year: Jan - Jun 2020
 
 - title: Research Projects
   type: time_table
   contents:
     - title: Trusted Execution Environment for In-Storage Computing
       year: 2021
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+      description:
+        - Develops IceClave, a trusted execution environment for in-storage computing in modern solid-state drives.
+        - Enables security isolation between in-storage apps and the flash translation layer with ARM TrustZone.
+        - Proposes efficient memory encryption and verification method to protect user data against physical attacks.
     - title: Hardware-assisted Multi-tenant Neural Processing Unit
       year: 2022
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+      description:
+        - Conducts a thorough study of the resource utilization of modern NPUs with real hardware devices.
+        - Proposes a multi-tenant NPU design for improving resource utilization and fairness.
+        - Designs a tensor operator scheduler that improves the fairness and throughput for collocated ML workloads.
+        - Develops a clustering scheme to identify pairs of collocatable DNN workloads.
 
 - title: Talks
   type: nested_list
@@ -58,15 +68,10 @@
   type: nested_list
   contents:
     - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
+      # items: 
+      #   - Description 1.
+      #   - Description 2.
     - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
-
-- title: Miscellaneous
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+      # items:
+      #   - Description 1.
+      #   - Description 2.

@@ -2,11 +2,9 @@
 layout: page
 permalink: /teaching/
 title: Teaching
-description: Materials for courses you taught. Replace this text with your description.
-nav: true
+description:
+nav: false
 nav_order: 5
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
-
-Organize your courses by years, topics, or universities, however you like!
+TA for <a href="https://courses.grainger.illinois.edu/ece511/fa2022/">ECE 511 Fall 2022</a>
