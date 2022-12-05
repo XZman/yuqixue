@@ -88,6 +88,9 @@
             {%- if site.discord_id -%}
             <a href="https://discord.com/users/{{ site.discord_id }}" title="Discord"><i class="fab fa-discord"></i></a>
             {% endif %}
+            {%- if site.bilibili_id -%}
+            <a href="https://space.bilibili.com/{{ site.bilibili_id }}" title="Bilibili"><i class="fab fa-brands fa-bilibili"></i></a>
+            {% endif %}
             {%- if site.rss_icon -%}
             <a href="{{ site.baseurl }}/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
             {% endif %}

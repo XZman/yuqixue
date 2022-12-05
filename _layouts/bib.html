@@ -174,6 +174,12 @@
             <a href="{{ entry.slides | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">Slides</a>
             {%- endif %}
           {%- endif %}
+          {%- if entry.fullvideo %}
+            <a href="{{ entry.fullvideo }}" class="btn btn-sm z-depth-0" role="button">Full Video</a>
+          {%- endif %}
+          {%- if entry.shortvideo %}
+            <a href="{{ entry.shortvideo }}" class="btn btn-sm z-depth-0" role="button">Lightning Talk</a>
+          {%- endif %}
           {%- if entry.website %}
             <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button">Website</a>
           {%- endif %}
