@@ -195,6 +195,12 @@
           {%- endif %}
           </div>
 
+          {%- if entry.otherversionnote %}
+            <div>
+              <i>{{entry.otherversionnote}}</i>
+            </div>
+          {%- endif %}
+
           {% if entry.abstract -%}
           <!-- Hidden abstract block -->
           <div class="abstract hidden">
