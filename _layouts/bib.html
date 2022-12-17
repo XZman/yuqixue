@@ -125,11 +125,17 @@
               {{ periodical | strip }}
             </div>
           {%- endunless -%}
+
+          {%- if entry.extranote %}
+          <div class="author">
+            {{entry.extranote}}
+          </div>
+          {%- endif %}
         {%- endif %}
           
-        {%- if entry.extranote %}
+        {%- if entry.otherversionnote %}
           <div>
-            {{entry.extranote}}
+            <i>{{entry.otherversionnote}}</i>
           </div>
         {%- endif %}
         
@@ -195,11 +201,7 @@
           {%- endif %}
           </div>
 
-          {%- if entry.otherversionnote %}
-            <div>
-              <i>{{entry.otherversionnote}}</i>
-            </div>
-          {%- endif %}
+
 
           {% if entry.abstract -%}
           <!-- Hidden abstract block -->
