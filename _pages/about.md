@@ -20,7 +20,7 @@ social: true  # includes social icons at the bottom of the page
 ---
 
 I am a ECE Ph.D. candidate at University of Illinois at Urbana-Champaign. I am advised by 
-[Prof. Jian Huang](http://jianh.web.engr.illinois.edu/) as a member of the [Systems Platform Research Group](https://platformxlab.github.io/). My research interests include efficient and secure architectures and systems for hardware accelerators.
+[Prof. Jian Huang](http://jianh.web.engr.illinois.edu/) as a member of the [Systems Platform Research Group](https://platformxlab.github.io/). My research focus is on architectures and systems for hardware accelerators. More specifically, I am interested in both efficiency and security of accelerators.
 
 Prior to my Ph.D. study, I obtained my Bachelor's degree from UIUC in 2021.
 
