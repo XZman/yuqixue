@@ -38,40 +38,46 @@
 - title: Research Projects
   type: time_table
   contents:
+    # - title: Hardware-assisted Multi-tenant Neural Processing Unit
+    #   year: 2022
+    #   description:
+    #     - Conducts a thorough study of the resource utilization of modern NPUs with real hardware devices.
+    #     - Proposes a multi-tenant NPU design for improving resource utilization and fairness.
+    #     - Designs a tensor operator scheduler that improves the fairness and throughput for collocated ML workloads.
+    #     - Develops a clustering scheme to identify pairs of collocatable DNN workloads.
+    # - title: Software-Defined Rack-Scale Storage System with Network-Storage Co-Design
+    #   year: 2022
+    #   description:
+    #     - Proposes a rack-scale storage system that co-designs software-defined network and software-defined storage.
+    #     - Develops a new I/O scheduling mechanism across network and storage for predictable performance.
+    #     - Develops a coordinated GC mechanism for a rack of SSDs to minimize the impact on the storage performance.
+    #     - Develops a rack-scale wear leveling mechanism for ensuring the uniform lifetime of a rack of SSDs.
     - title: Trusted Execution Environment for In-Storage Computing
       year: 2021
       description:
         - Develops IceClave, a trusted execution environment for in-storage computing in modern solid-state drives.
         - Enables security isolation between in-storage apps and the flash translation layer with ARM TrustZone.
         - Proposes efficient memory encryption and verification method to protect user data against physical attacks.
-    - title: Hardware-assisted Multi-tenant Neural Processing Unit
-      year: 2022
-      description:
-        - Conducts a thorough study of the resource utilization of modern NPUs with real hardware devices.
-        - Proposes a multi-tenant NPU design for improving resource utilization and fairness.
-        - Designs a tensor operator scheduler that improves the fairness and throughput for collocated ML workloads.
-        - Develops a clustering scheme to identify pairs of collocatable DNN workloads.
+
 
 - title: Talks
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: "IceClave: A Trusted Execution Environment for In-Storage Computing"
       items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+        - 54th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO'21). Virtual. Oct 19, 2021.
+        - 13th Annual Non-Volatile Memories Workshop (NVMW'22). San Diego, CA, United States. May 10, 2022.
+        - 17th Coordinated Science Lab Student Conference (CSLSC'22). Urbana, IL, United States. Feb 24, 2022.
 
 - title: Services
   type: nested_list
   contents:
-    - title: Topic 1.
-      # items: 
-      #   - Description 1.
-      #   - Description 2.
-    - title: Topic 2.
-      # items:
-      #   - Description 1.
-      #   - Description 2.
+    - title: Artifact Evaluation Committee
+      items: 
+        - IEEE/ACM International Symposium on Microarchitecture (MICRO), 2022
+        - USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2022
+        - USENIX Annual Technical Conference (ATC), 2022
+        - IEEE International Symposium on High-Performance Computer Architecture (HPCA), 2023
+    - title: Reviewer
+      items:
+        - IEEE Computer Architecture Letters, 2022
