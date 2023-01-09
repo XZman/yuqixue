@@ -67,8 +67,8 @@
     - title: "IceClave: A Trusted Execution Environment for In-Storage Computing"
       items: 
         - 54th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO'21). Virtual. Oct 19, 2021.
-        - 13th Annual Non-Volatile Memories Workshop (NVMW'22). San Diego, CA, United States. May 10, 2022.
         - 17th Coordinated Science Lab Student Conference (CSLSC'22). Urbana, IL, United States. Feb 24, 2022.
+        - 13th Annual Non-Volatile Memories Workshop (NVMW'22). San Diego, CA, United States. May 10, 2022.
 
 - title: Services
   type: nested_list

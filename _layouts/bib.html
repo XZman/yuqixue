@@ -16,8 +16,6 @@
               {%- assign venue_style = site.data.venues[entry.abbr].color | prepend: 'style="background-color:' | append: '"' -%}
             {%- endif -%}
             <abbr class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr>
-          {%- else -%}
-            <abbr class="badge">{{entry.abbr}}</abbr>
           {%- endif -%}
         {%- endif -%}
         </div>
@@ -121,8 +119,23 @@
             {%- capture entryyear -%}{{ " " }}{{entry.year}}{%- endcapture -%}
           {%- endif -%}
           {%- capture periodical -%}{{ entrytype }}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
-          <div class="periodical">
-            {{ periodical | strip }}
+          
+          {%- unless entry.title_and_author_only -%}
+            <div class="periodical">
+              {{ periodical | strip }}
+            </div>
+          {%- endunless -%}
+
+          {%- if entry.extranote %}
+          <div class="author">
+            {{entry.extranote}}
+          </div>
+          {%- endif %}
+        {%- endif %}
+          
+        {%- if entry.otherversionnote %}
+          <div>
+            <i>{{entry.otherversionnote}}</i>
           </div>
         {%- endif %}
         
@@ -187,6 +200,8 @@
             <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div data-altmetric-id="{{ entry.altmetric }}" class="altmetric-embed" data-hide-no-mentions="true" data-hide-less-than="15" data-badge-popover="right" data-badge-type="2" style="display:inline"></div>
           {%- endif %}
           </div>
+
+
 
           {% if entry.abstract -%}
           <!-- Hidden abstract block -->
