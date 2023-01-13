@@ -57,7 +57,9 @@ let initTheme = (theme) => {
     }
   }
   
-  setTheme(theme);
+  // setTheme(theme);
+  // always use dark theme
+  setTheme('dark');
 }
 
 
