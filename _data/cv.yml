@@ -9,8 +9,8 @@
       value: Computer Architecture and Systems, Accelerator Design. Hardware Security.
     # - name: Date of Birth
     #   value: Jan 24, 2000
-    # - name: Languages
-    #   value: Chinese, English
+    - name: Languages
+      value: Chinese, English
 
 - title: Education
   type: time_table
@@ -21,6 +21,9 @@
     - title: Bachelor of Science in Computer Engineering<br>Bachelor of Science in Mathematics
       institution: University of Illinois at Urbana-Champaign
       year: 2017 - 2021
+    - title: High School
+      institution: Shenzhen Middle School, Shenzhen, Guangdong, China
+      year: 2014 - 2017
 
 - title: Experience
   type: time_table
