@@ -108,7 +108,11 @@
           {% if entry.type == "article" -%}
             {%- capture entrytype -%}<em>{{entry.journal}}</em>{%- endcapture -%}
           {%- elsif proceedings contains entry.type -%}
-            {%- capture entrytype -%}<em>In {{entry.booktitle}}</em> {%- endcapture -%}
+            {% if entry.to_appear %}
+              {%- capture entrytype -%}<em>To appear in {{entry.booktitle}}</em>{%- endcapture -%}
+            {% else %}
+              {%- capture entrytype -%}<em>In {{entry.booktitle}}</em>{%- endcapture -%}
+            {% endif %}
           {%- else -%}
             {%- capture entrytype -%}{%- endcapture -%}
           {%- endif -%}
@@ -118,8 +122,13 @@
           {%- if entry.year -%}
             {%- capture entryyear -%}{{ " " }}{{entry.year}}{%- endcapture -%}
           {%- endif -%}
-          {%- capture periodical -%}{{ entrytype }}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
-          
+          {%- if entry.series -%} <!-- Series name indicates a conference, not journal/book -->
+            {%- capture entryseries -%}{{entry.series}}{%- endcapture -%}
+            {%- capture periodical -%}{{ entrytype }} ({{ entryseries }}){%- endcapture -%}
+          {%- else -%}
+            {%- capture periodical -%}{{ entrytype }}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
+          {%- endif -%}
+
           {%- unless entry.title_and_author_only -%}
             <div class="periodical">
               {{ periodical | strip }}
