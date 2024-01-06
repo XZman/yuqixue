@@ -2930,6 +2930,11 @@ input, select, textarea {
 		padding-top: 1em;
 		text-align: left;
 	}
+	.statistics-exp-list .subsubsec-title {
+		font-weight: 400;
+		padding-top: 0.6em;
+		margin-bottom: 0.3em;
+	}
 
 	.exp-list-table dt {
 		width: auto !important;
