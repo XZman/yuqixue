@@ -3,13 +3,17 @@
 	Stellar by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	01/05/2024 Yuqi Xue: Adapted for personal website
 -->
 <html>
 	<head>
-		<title>Stellar by HTML5 UP</title>
+		<title>Yuqi Xue</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="shortcut icon" type="image/png" href="images/hutao.png">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -19,19 +23,18 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<span class="logo"><img src="images/logo.svg" alt="" /></span>
-						<h1>Stellar</h1>
-						<p>Just another free, fully responsive site template<br />
-						built by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<span class="logo"><img src="images/yuqixue2.png" alt="" /></span>
+						<h1>Yuqi Xue</h1>
+						<p>ECE Ph.D. Candidate @ UIUC <br> <a href="mailto:yuqixue2@illinois.edu">yuqixue2-at-illinois-edu</a></p>
 					</header>
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="#intro" class="active">Introduction</a></li>
-							<li><a href="#first">First Section</a></li>
-							<li><a href="#second">Second Section</a></li>
-							<li><a href="#cta">Get Started</a></li>
+							<li><a href="#intro" class="active">About Me</a></li>
+							<li><a href="#first">Publication</a></li>
+							<li><a href="#second">Experience</a></li>
+							<li><a href="#cta">Misc</a></li>
 						</ul>
 					</nav>
 
@@ -43,52 +46,119 @@
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
-											<h2>Ipsum sed adipiscing</h2>
+											<h2>About Me</h2>
 										</header>
-										<p>Sed lorem ipsum dolor sit amet nullam consequat feugiat consequat magna
-										adipiscing magna etiam amet veroeros. Lorem ipsum dolor tempus sit cursus.
-										Tempus nisl et nullam lorem ipsum dolor sit amet aliquam.</p>
-										<ul class="actions">
+										<p>
+											I am a ECE Ph.D. candidate at University of Illinois at Urbana-Champaign. 
+											I am advised by <a href="http://jianh.web.engr.illinois.edu/" rel="external nofollow noopener" target="_blank" contenteditable="false" style="cursor: pointer;">Prof. Jian Huang</a> 
+											as a member of the <a href="https://platformxlab.github.io/" rel="external nofollow noopener" target="_blank" contenteditable="false" style="cursor: pointer;">Systems Platform Research Group</a>. 
+											My research focus is on architectures and systems for hardware accelerators. More specifically, I am interested in both efficiency and security of accelerators.
+										</p>
+										<p>Prior to my Ph.D. study, I obtained my Bachelor’s degree from UIUC in 2021.</p>
+										<!-- <ul class="actions">
 											<li><a href="generic.html" class="button">Learn More</a></li>
-										</ul>
+										</ul> -->
 									</div>
-									<span class="image"><img src="images/pic01.jpg" alt="" /></span>
+									<!-- <span class="image"><img src="images/pic01.jpg" alt="" /></span> -->
 								</div>
 							</section>
 
 						<!-- First Section -->
 							<section id="first" class="main special">
 								<header class="major">
-									<h2>Magna veroeros</h2>
+									<h2>Publication</h2>
 								</header>
-								<ul class="features">
+								<ul class="features-pub-list alt">
 									<li>
-										<span class="icon solid major style1 fa-code"></span>
-										<h3>Ipsum consequat</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
+										<h3 class="pub-title">
+											G10: Enabling An Efficient Unified GPU Memory and Storage Architecture with Smart Tensor Migrations
+										</h3>
+										<h5 class="pub-authors">Haoyang Zhang*, Yirui Eric Zhou*, <u>Yuqi Xue</u>, Yiqi Liu, and Jian Huang</h5>
+										<h5 class="pub-conference">56th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO'23)</h5>
+										<h5 class="pub-note">*Co-primary authors.</h5>
+										<span class="pub-list-icons">
+											<a href="https://arxiv.org/abs/2310.09443"><i title="Paper" class="bi-file-earmark-text"></i></a>
+											<a href="https://uillinoisedu-my.sharepoint.com/:p:/g/personal/zhang402_illinois_edu/EQYpDUtwx1xCgAdhiMvFbx8BZnJfR5KGVxBCDAb-oUfVdQ?e=XLcumb"><i title="Slides" class="bi-file-earmark-slides"></i></a>
+											<!-- <a href=""><i class="bi-camera-video"></i></a>
+											<a href=""><i class="bi-camera-reels"></i></a> -->
+											<a href="https://github.com/platformxlab/G10"><i title="Artifact" class="bi-github"></i></a>
+										</span>
 									</li>
 									<li>
-										<span class="icon major style3 fa-copy"></span>
-										<h3>Amed sed feugiat</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
+										<h3 class="pub-title">
+											RackBlox: A Software-Defined Rack-Scale Storage System with Network-Storage Co-Design
+										</h3>
+										<h5 class="pub-authors">Benjamin Reidys, <u>Yuqi Xue</u>, Yiqi Liu, Daixuan Li, Bharat Sukhwanim, Wen-mei Hwu, Deming Chen, Sameh Asaad, and Jian Huang</h5>
+										<h5 class="pub-conference">29th ACM Symposium on Operating Systems Principles (SOSP'23)</h5>
+										<span class="pub-list-icons">
+											<a href="pdf/rackblox_sosp23.pdf"><i title="Paper" class="bi-file-earmark-text"></i></a>
+											<a href="https://breidys2.github.io/rackblox_sosp_slides.pdf"><i title="Slides" class="bi-file-earmark-slides"></i></a>
+											<!-- <a href=""><i class="bi-camera-video"></i></a>
+											<a href=""><i class="bi-camera-reels"></i></a> -->
+											<a href="https://github.com/breidys2/rackblox"><i title="Artifact" class="bi-github"></i></a>
+										</span>
 									</li>
 									<li>
-										<span class="icon major style5 fa-gem"></span>
-										<h3>Dolor nullam</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
+										<h3 class="pub-title">								
+											System Virtualization for Neural Processing Units
+										</h3>
+										<h5 class="pub-authors"><u>Yuqi Xue</u>, Yiqi Liu, and Jian Huang</h5>
+										<h5 class="pub-conference">19th Workshop on Hot Topics in Operating Systems (HotOS'23)</h5>
+										<h5 class="pub-note">A <a href="pdf/npuvirt_hotinfra23.pdf">short version</a> is presented in HotInfra'23.</h5>
+										<span class="pub-list-icons">
+											<a href="pdf/neucloud_hotos23.pdf"><i title="Paper" class="bi-file-earmark-text"></i></a>
+											<!-- <a href=""><i class="bi-file-earmark-slides"></i></a> -->
+											<!-- <a href=""><i class="bi-camera-video"></i></a> -->
+											<!-- <a href=""><i class="bi-camera-reels"></i></a> -->
+											<!-- <a href=""><i class="bi-github"></i></a> -->
+										</span>
+									</li>
+									<li>
+										<h3 class="pub-title">								
+											V10: Hardware-Assisted NPU Multi-Tenancy for Improved Resource Utilization and Fairness
+										</h3>
+										<h5 class="pub-authors"><u>Yuqi Xue</u>, Yiqi Liu, Lifeng Nai, and Jian Huang</h5>
+										<h5 class="pub-conference">50th Annual International Symposium on Computer Architecture (ISCA'23)</h5>
+										<h5 class="pub-note">A <a href="pdf/npuvirt_hotinfra23.pdf">short version</a> is presented in HotInfra'23.</h5>
+										<span class="pub-list-icons">
+											<a href="pdf/v10_isca23.pdf"><i title="Paper" class="bi-file-earmark-text"></i></a>
+											<a href="pdf/v10_isca23_slides.pdf"><i title="Slides" class="bi-file-earmark-slides"></i></a>
+											<a href="https://www.youtube.com/watch?v=nIHy6P9-tHs"><i title="Lightning Talk" class="bi-camera-video"></i></a>
+											<!-- <a href=""><i class="bi-camera-reels"></i></a> -->
+											<!-- <a href=""><i class="bi-github"></i></a> -->
+										</span>
+									</li>
+									<li>
+										<h3 class="pub-title">								
+											IceClave: A Trusted Execution Environment for In-Storage Computing
+										</h3>
+										<h5 class="pub-authors">Luyi Kang*, <u>Yuqi Xue*</u>, Weiwei Jia*, Xiaohao Wang, Jongryool Kim, Changhwan Youn, Myeong Joon Kang, Hyung Jin Lim, Bruce Jacob, and Jian Huang</h5>
+										<h5 class="pub-conference">54th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO'21)</h5>
+										<h5 class="pub-note">*Co-primary authors.</h5>
+										<h5 class="pub-note">
+											A <a href="http://nvmw.ucsd.edu/nvmw2022-program/nvmw2022-data/nvmw2022-paper17-final_version_your_extended_abstract.pdf" rel="external nofollow noopener" target="_blank" contenteditable="false" style="cursor: pointer;">short version</a> is presented in NVMW'22.
+											An <a href="https://arxiv.org/abs/2205.06361">extended abstract</a> is available on arXiv.
+										</h5>
+										<span class="pub-list-icons">
+											<a href="pdf/iceclave_micro21.pdf"><i title="Paper" class="bi-file-earmark-text"></i></a>
+											<a href="pdf/iceclave_micro21_slides.pdf"><i title="Slides" class="bi-file-earmark-slides"></i></a>
+											<a href="https://drive.google.com/file/d/1aniys-a5yklaFluUtNIl4PBIOLzBHpIK/view"><i title="Lightning Talk" class="bi-camera-video"></i></a>
+											<a href="https://youtu.be/qX8F9xDpwj4"><i title="Full Talk" class="bi-camera-reels"></i></a>
+											<!-- <a href=""><i class="bi-github"></i></a> -->
+										</span>
 									</li>
 								</ul>
-								<footer class="major">
+								<!-- <footer class="major">
 									<ul class="actions special">
 										<li><a href="generic.html" class="button">Learn More</a></li>
 									</ul>
-								</footer>
+								</footer> -->
 							</section>
 
 						<!-- Second Section -->
 							<section id="second" class="main special">
 								<header class="major">
-									<h2>Ipsum consequat</h2>
+									<h2>Experience</h2>
 									<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
 									posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
 								</header>
@@ -125,31 +195,52 @@
 						<!-- Get Started -->
 							<section id="cta" class="main special">
 								<header class="major">
-									<h2>Congue imperdiet</h2>
-									<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
-									posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
+									<h2>Misc</h2>
+									<!-- <p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
+									posuere. Nulla massa urna, fermentum eget quam aliquet.</p> -->
 								</header>
-								<footer class="major">
+								<ul class="features">
+									<li>
+										<span class="major style1">
+											<img src="images/cats/IMG_9084.jpg"/>
+										</span>
+										<h3>Cats</h3>
+										<!-- <p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p> -->
+									</li>
+									<li>
+										<span class="major style1">
+											<img src="images/hutao.png"/>
+										</span>
+										<h3>Genshin Impact</h3>
+										<!-- <p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p> -->
+									</li>
+									<!-- <li>
+										<span class="icon major style5 fa-gem"></span>
+										<h3>Dolor nullam</h3>
+										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
+									</li> -->
+								</ul>
+								<!-- <footer class="major">
 									<ul class="actions special">
 										<li><a href="generic.html" class="button primary">Get Started</a></li>
 										<li><a href="generic.html" class="button">Learn More</a></li>
 									</ul>
-								</footer>
+								</footer> -->
 							</section>
 
 					</div>
 
 				<!-- Footer -->
 					<footer id="footer">
-						<section>
+						<!-- <section>
 							<h2>Aliquam sed mauris</h2>
 							<p>Sed lorem ipsum dolor sit amet et nullam consequat feugiat consequat magna adipiscing tempus etiam dolore veroeros. eget dapibus mauris. Cras aliquet, nisl ut viverra sollicitudin, ligula erat egestas velit, vitae tincidunt odio.</p>
 							<ul class="actions">
 								<li><a href="generic.html" class="button">Learn More</a></li>
 							</ul>
-						</section>
+						</section> -->
 						<section>
-							<h2>Etiam feugiat</h2>
+							<!-- <h2>Etiam feugiat</h2>
 							<dl class="alt">
 								<dt>Address</dt>
 								<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
@@ -157,16 +248,17 @@
 								<dd>(000) 000-0000 x 0000</dd>
 								<dt>Email</dt>
 								<dd><a href="#">information@untitled.tld</a></dd>
-							</dl>
+							</dl> -->
 							<ul class="icons">
-								<li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li>
+								<!-- <li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li> -->
+								<!-- <li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li> -->
+								<!-- <li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li> -->
+								<li><a href="https://github.com/XZman" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+								<li><a href="https://scholar.google.com/citations?user=7dDtpZoAAAAJ" class="icon ai ai-google-scholar alt"><span class="label">Dribbble</span></a></li>
+								<li><a href="https://www.linkedin.com/in/yuqi-xue-48a574166" class="icon brands fa-linkedin alt"><span class="label">LinkedIn</span></a></li>
 							</ul>
 						</section>
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; Yuqi Xue. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
 
 			</div>

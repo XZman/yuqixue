@@ -2235,7 +2235,7 @@ input, select, textarea {
 			text-rendering: auto;
 			line-height: 1;
 			text-transform: none !important;
-			font-family: 'Font Awesome 5 Free';
+			/* font-family: 'Font Awesome 5 Free'; */
 			font-weight: 400;
 		}
 
@@ -2616,9 +2616,21 @@ input, select, textarea {
 /* Icons */
 
 	ul.icons {
+		display: -moz-flex;
+		display: -webkit-flex;
+		display: -ms-flex;
+		display: flex;
+		-moz-flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		-moz-justify-content: center;
+		-webkit-justify-content: center;
+		-ms-justify-content: center;
+		justify-content: center;
 		cursor: default;
 		list-style: none;
-		padding-left: 0;
+		padding-right: 2.5em;
 	}
 
 		ul.icons li {
@@ -2793,6 +2805,46 @@ input, select, textarea {
 	}
 
 /* Features */
+	.features-pub-list {
+		text-align: left;
+	}
+
+		.features-pub-list .year {
+			padding: 0;
+			margin: 0;
+			text-align: center;
+		}
+
+		.features-pub-list .pub-list-icons i {
+			padding-right: 1em;
+		}
+		.features-pub-list .pub-list-icons a {
+			border-bottom: none;
+		}
+		.features-pub-list .pub-list-icons a:hover {
+			color: #ff00d9 !important;
+		}
+
+		.features-pub-list .pub-title {
+			font-weight: 500;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+		.features-pub-list .pub-authors {
+			font-weight: 400;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+		.features-pub-list .pub-conference {
+			font-weight: 100;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+		.features-pub-list .pub-note {
+			font-weight: 100;
+			padding-bottom: 0;
+			margin-bottom: 0.4em;
+		}
 
 	.features {
 		display: -moz-flex;
@@ -2812,6 +2864,15 @@ input, select, textarea {
 		padding: 0;
 		list-style: none;
 	}
+
+		.features img {
+			max-width: 66%;
+			border-radius: 50%;
+			border-style: double;
+			border-color: #DDDDDD;
+			border-width: 1px;
+			padding: 0.65em;
+		}
 
 		.features li {
 			width: calc(33.33333% - 2em);
@@ -3121,7 +3182,8 @@ input, select, textarea {
 				#header.alt .logo img {
 					display: block;
 					margin: 0 auto;
-					max-width: 75%;
+					max-width: 25%;
+					border-radius: 50%;
 				}
 
 		@media screen and (max-width: 1280px) {
@@ -3690,9 +3752,10 @@ input, select, textarea {
 		-webkit-flex-wrap: wrap;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
+		justify-content: center;
 		padding: 5em 5em 3em 5em ;
-		width: calc(100% + 2em);
-		margin: 0 0 3em -2em;
+		width: calc(100%);
+		margin: 0 0 3em 0;
 	}
 
 		#footer > * {
