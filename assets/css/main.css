@@ -2922,6 +2922,54 @@ input, select, textarea {
 
 /* Statistics */
 
+.statistics-exp-list {
+	text-align: left;
+}
+
+	.statistics-exp-list .subsec-title {
+		padding-top: 1em;
+		text-align: left;
+	}
+
+	.exp-list-table dt {
+		width: auto !important;
+	}
+	.exp-list-table dd {
+		width: auto !important;
+		padding-left: 2em;
+	}
+
+	.statistics-exp-list .exp-list-icons i {
+		padding-right: 1em;
+	}
+	.statistics-exp-list .exp-list-icons a {
+		border-bottom: none;
+	}
+	.statistics-exp-list .exp-list-icons a:hover {
+		color: #ff00d9 !important;
+	}
+
+	.statistics-exp-list .exp-title {
+		font-weight: 500;
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+	.statistics-exp-list .exp-authors {
+		font-weight: 400;
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+	.statistics-exp-list .exp-conference {
+		font-weight: 100;
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+	.statistics-exp-list .exp-note {
+		font-weight: 100;
+		padding-bottom: 0;
+		margin-bottom: 0.4em;
+	}
+
 	.statistics {
 		display: -moz-flex;
 		display: -webkit-flex;
