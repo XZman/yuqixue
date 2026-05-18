@@ -1,0 +1,76 @@
+{{/* Hugo Blox: Education — local block, compact list (mirrors teaching/service style) */}}
+
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ if not (reflect.IsMap $content) }}{{ $content = dict }}{{ end }}
+
+{{ $username := "me" }}
+{{ $username_raw := index $content "username" }}
+{{ if eq (printf "%T" $username_raw) "string" }}
+  {{ $username = strings.TrimSpace $username_raw }}
+{{ end }}
+{{ $profile := partial "functions/get_author_profile" $username }}
+
+{{ $title := "Education" }}
+{{ with index $content "title" }}{{ $title = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+{{ $edu_raw := $profile.education }}
+{{ $items := slice }}
+{{ if reflect.IsSlice $edu_raw }}
+  {{ range $edu_raw }}
+    {{ if reflect.IsMap . }}
+      {{ $degree := "" }}{{ $inst := "" }}{{ $start := "" }}{{ $end := "" }}{{ $summary := "" }}{{ $url := "" }}
+      {{ with index . "degree" }}{{ $degree = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ if not $degree }}{{ with index . "area" }}{{ $degree = strings.TrimSpace (printf "%v" .) }}{{ end }}{{ end }}
+      {{ with index . "institution" }}{{ $inst = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "start" }}{{ $start = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "end" }}{{ $end = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "summary" }}{{ $summary = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "url" }}{{ $url = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+      {{ $s := "" }}{{ $e := "" }}
+      {{ if $start }}{{ $s = substr $start 0 4 }}{{ end }}
+      {{ if $end }}{{ $e = substr $end 0 4 }}{{ end }}
+      {{ $dr := "" }}
+      {{ if and $s $e }}{{ $dr = printf "%s – %s" $s $e }}{{ else if $s }}{{ $dr = printf "%s – Present" $s }}{{ end }}
+
+      {{ $items = $items | append (dict "title" $degree "subtitle" $inst "date_str" $dr "summary" $summary "url" $url) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<div class="max-w-3xl mx-auto px-4">
+  {{ with $title }}<h2 class="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{{ . }}</h2>{{ end }}
+  {{ if $items }}
+  <ul class="divide-y divide-gray-200 dark:divide-gray-700 border-t border-gray-200 dark:border-gray-700">
+    {{ range $items }}
+    {{ $link := "" }}{{ $target := "" }}
+    {{ with .url }}
+      {{ $link = . }}
+      {{ $scheme := (urls.Parse $link).Scheme }}
+      {{ if not $scheme }}
+        {{ if not (hasPrefix $link "#") }}{{ $link = $link | relLangURL }}{{ end }}
+        {{ if eq (path.Ext $link) ".pdf" }}{{ $target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
+      {{ else if in (slice "http" "https") $scheme }}
+        {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
+      {{ end }}
+    {{ end }}
+    <li class="py-2 flex items-baseline gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="flex flex-wrap items-baseline gap-x-2">
+          <span class="font-medium text-gray-900 dark:text-white">
+            {{ if $link }}<a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hover:text-primary-600 dark:hover:text-primary-400">{{ end }}
+            {{ .title | markdownify | emojify }}
+            {{ if $link }}</a>{{ end }}
+          </span>
+          {{ with .date_str }}<span class="text-sm text-gray-500 dark:text-gray-400">{{ . }}</span>{{ end }}
+        </div>
+        {{ with .subtitle }}<div class="text-sm text-gray-700 dark:text-gray-300">{{ . | markdownify }}</div>{{ end }}
+        {{ with .summary }}<div class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{{ . | markdownify | emojify }}</div>{{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</div>

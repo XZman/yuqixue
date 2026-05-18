@@ -1,0 +1,147 @@
+schema: hugoblox/author/v1
+slug: me
+is_owner: true
+name:
+  display: Yuqi Xue
+  given: Yuqi
+  family: Xue
+  alternate: ''
+  pronunciation: ''
+  pronouns: ''
+postnominals: []
+role: ECE PhD Student
+bio: |
+  I am a PhD student in ECE at the University of Illinois Urbana-Champaign,
+  advised by [Prof. Jian Huang](http://jianh.web.engr.illinois.edu/) in the
+  [Systems Platform Research Group](https://platformxlab.github.io/). My
+  research builds the software and hardware ecosystem for neural processing
+  units (NPUs), including accelerators such as TPUs. The NPU hardware
+  architecture provides massive computational power for machine learning
+  (ML) workloads, but their performance and efficiency depend highly on the
+  surrounding ecosystem: optimized compute kernels, programming abstractions,
+  compilers, software runtimes, and cluster resource orchestration. My work
+  develops the hardware support and software stack to make NPUs more performant,
+  cost-efficient, and energy-efficient.
+
+  Beyond NPUs, I am also interested in other ML accelerators such as GPUs
+  and inter-core connected AI chips (i.e., Graphcore IPUs, Tenstorrent). I
+  am also exploring how to leverage AI/LLM agents to develop the NPU
+  ecosystem.
+
+affiliations:
+  - name: University of Illinois Urbana-Champaign
+    url: https://illinois.edu/
+
+links:
+  - icon: at-symbol
+    url: mailto:yuqixue2@illinois.edu
+    label: E-mail Me
+  - icon: brands/github
+    url: https://github.com/XZman
+  - icon: brands/linkedin
+    url: https://www.linkedin.com/in/yuqi-xue-48a574166
+  - icon: academicons/google-scholar
+    url: https://scholar.google.com/citations?user=7dDtpZoAAAAJ
+
+interests:
+  - Computer Architecture
+  - Operating Systems
+  - Sustainable & Efficient AI Systems
+  - Hardware/Software Co-design
+
+education:
+  - degree: PhD in Electrical and Computer Engineering
+    institution: University of Illinois Urbana-Champaign
+    start: 2021-08-01
+  - degree: BS in Electrical and Computer Engineering, BS in Mathematics
+    institution: University of Illinois Urbana-Champaign
+    start: 2017-08-01
+    end: 2021-05-31
+  - degree: High School
+    institution: Shenzhen Middle School
+    start: 2014-09-01
+    end: 2017-06-30
+
+experience:
+  - role: Graduate Research Assistant
+    org: Systems Platform Research Group, UIUC
+    start: 2021-08-01
+  - role: Research Intern
+    org: Google LLC (Remote)
+    start: 2023-09-01
+    end: 2024-01-31
+  - role: Research Intern
+    org: Google LLC, Sunnyvale, CA
+    start: 2023-06-01
+    end: 2023-08-31
+
+teaching:
+  - title: ECE 511 — Computer Architecture (Graduate TA)
+    date: Spring 2023, Spring 2024
+    summary: List of Teachers Ranked as Excellent By Their Students
+  - title: ECE 411 — Computer Organization and Design (Graduate TA)
+    date: Spring 2022, Fall 2023
+  - title: ECE 522 — Emerging Memory and Storage Systems (Graduate TA)
+    date: Spring 2023
+  - title: ECE 310 — Digital Signal Processing (Undergraduate Grader)
+    date: Jan – Jul 2020
+
+service:
+  - category: Artifact Evaluation Committee
+    items:
+      - title: IEEE/ACM International Symposium on Microarchitecture (MICRO)
+        date: "2022"
+      - title: USENIX Symposium on Operating Systems Design and Implementation (OSDI)
+        date: 2022, 2023
+      - title: USENIX Annual Technical Conference (ATC)
+        date: 2022, 2023
+      - title: IEEE International Symposium on High-Performance Computer Architecture (HPCA)
+        date: "2023"
+  - category: Peer Review
+    items:
+      - title: IEEE Computer Architecture Letters
+        date: 2022, 2023, 2024
+      - title: ACM Transactions on Architecture and Code Optimization
+        date: 2024, 2025
+      - title: Student Program Committee — IEEE/ACM International Symposium on Microarchitecture (MICRO)
+        date: "2026"
+  - category: Organizing Committee
+    items:
+      - title: Workshop on Hot Topics in System Infrastructure (HotInfra), Web Chair
+        url: https://hotinfra.org/
+        date: 2023, 2024, 2026
+  - category: Tutorial
+    items:
+      - title: "NexNPU: Building an Open-Source Ecosystem for Neural Processing Units (colocated with ISCA'26)"
+        date: "2026"
+
+awards:
+  - title: IEEE Micro Top Picks from 2024 Computer Architecture Conferences
+    awarder: IEEE Micro
+    date: "2025-01-01"
+    icon: hero/trophy
+  - title: Best Paper Runner-Up, MICRO 2024
+    awarder: IEEE/ACM MICRO
+    date: "2024-11-01"
+    icon: hero/trophy
+  - title: Rambus Computer Engineering Fellowship
+    awarder: Rambus
+    date: "2025-01-01"
+    url: https://ece.illinois.edu/academics/grad/fellowships/rambus
+  - title: Qualcomm Graduate Award
+    awarder: Qualcomm
+    date: "2025-04-01"
+  - title: Yi-Min Wang and Pi-Yu Chung Research Award
+    awarder: UIUC ECE
+    date: "2025-01-01"
+    url: https://ece.illinois.edu/academics/grad/awards/wang_chung
+  - title: Dan Vivoli Endowed Fellowship
+    awarder: UIUC ECE
+    date: "2024-09-01"
+    url: https://ece.illinois.edu/academics/grad/fellowships/vivoli
+  - title: Student Travel Grants (ISCA 2023, MICRO 2024)
+    date: "2024-10-01"
+  - title: Oral Presentation Award, CSL Student Conference
+    awarder: UIUC CSL
+    date: "2024-02-01"
+    url: https://publish.illinois.edu/csl-student-conference-2024/
