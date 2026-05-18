@@ -1,0 +1,145 @@
+{{/* Hugo Blox: Awards — local override: compact list */}}
+{{/* License: https://github.com/HugoBlox/kit/blob/main/LICENSE.md */}}
+
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ if not (reflect.IsMap $content) }}{{ $content = dict }}{{ end }}
+{{ $design := $block.design }}
+{{ if not (reflect.IsMap $design) }}{{ $design = dict }}{{ end }}
+
+{{ $username := "me" }}
+{{ $username_raw := index $content "username" }}
+{{ if eq (printf "%T" $username_raw) "string" }}
+  {{ $username = strings.TrimSpace $username_raw }}
+{{ end }}
+{{ $profile := partial "functions/get_author_profile" $username }}
+{{ $awards_raw := $profile.awards }}
+
+{{ $date_format := "Jan 2006" }}
+{{ $date_format_raw := index $design "date_format" }}
+{{ if eq (printf "%T" $date_format_raw) "string" }}
+  {{ $date_format = strings.TrimSpace $date_format_raw | default "Jan 2006" }}
+{{ end }}
+
+{{ $awards_iter := slice }}
+{{ if reflect.IsSlice $awards_raw }}
+  {{ $awards_iter = $awards_raw }}
+{{ else if reflect.IsMap $awards_raw }}
+  {{ range $awards_raw }}
+    {{ $awards_iter = $awards_iter | append . }}
+  {{ end }}
+{{ end }}
+
+{{ $awards := slice }}
+{{ if gt (len $awards_iter) 0 }}
+  {{ range $awards_iter }}
+    {{ if reflect.IsMap . }}
+      {{ $title := "" }}
+      {{ $icon := "" }}
+      {{ $url := "" }}
+      {{ $awarder := "" }}
+      {{ $date := "" }}
+      {{ $date_start := "" }}
+      {{ $summary := "" }}
+      {{ $certificate_url := "" }}
+
+      {{ with index . "title" }}{{ $title = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "icon" }}{{ $icon = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "url" }}{{ $url = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "awarder" }}{{ $awarder = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "date" }}{{ $date = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "date_start" }}{{ $date_start = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "summary" }}{{ $summary = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "certificate_url" }}{{ $certificate_url = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+      {{ if $title }}
+        {{ $date_sort := $date | default $date_start }}
+        {{ $awards = $awards | append (dict "title" $title "icon" $icon "url" $url "awarder" $awarder "date" $date "date_start" $date_start "summary" $summary "certificate_url" $certificate_url "date_sort" $date_sort) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $title := "" }}
+{{ $title_raw := index $content "title" }}
+{{ if $title_raw }}
+  {{ $title = strings.TrimSpace (printf "%v" $title_raw) }}
+{{ end }}
+
+{{ $text := "" }}
+{{ $text_raw := index $content "text" }}
+{{ if $text_raw }}
+  {{ $text = strings.TrimSpace (printf "%v" $text_raw) }}
+{{ end }}
+
+<div class="max-w-3xl mx-auto px-4">
+  {{ with $title }}
+  <h2 class="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{{ . | markdownify | emojify }}</h2>
+  {{ end }}
+
+  {{ with $text }}<p class="mb-4 text-gray-700 dark:text-gray-300">{{ . | markdownify | emojify }}</p>{{ end }}
+
+  {{ if gt (len $awards) 0 }}
+  <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+    {{ range $idx, $award := sort $awards "date_sort" "desc" }}
+    {{ $icon := index $award "icon" }}
+    {{ $award_url := index $award "url" }}
+    {{ $award_link := "" }}
+    {{ $award_target := "" }}
+    {{ if $award_url }}
+      {{ $award_link = $award_url }}
+      {{ $scheme := (urls.Parse $award_link).Scheme }}
+      {{ if not $scheme }}
+        {{ if not (hasPrefix $award_link "#") }}
+          {{ $award_link = $award_link | relLangURL }}
+        {{ end }}
+        {{ if eq (path.Ext $award_link) ".pdf" }}{{ $award_target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
+      {{ else if in (slice "http" "https") $scheme }}
+        {{ $award_target = "target=\"_blank\" rel=\"noopener\"" }}
+      {{ end }}
+    {{ end }}
+
+    {{ $date_str := "" }}
+    {{ $date_value := index $award "date" }}
+    {{ $date_start_value := index $award "date_start" }}
+    {{ if $date_value }}
+      {{ $parsed := try (time $date_value) }}
+      {{ if not $parsed.Err }}
+        {{ $date_str = $parsed.Value | time.Format $date_format }}
+      {{ else }}
+        {{ $date_str = $date_value }}
+      {{ end }}
+    {{ else if $date_start_value }}
+      {{ $parsed := try (time $date_start_value) }}
+      {{ if not $parsed.Err }}
+        {{ $date_str = $parsed.Value | time.Format $date_format }}
+      {{ else }}
+        {{ $date_str = $date_start_value }}
+      {{ end }}
+    {{ end }}
+
+    {{ $awarder := index $award "awarder" }}
+    {{ $summary := index $award "summary" }}
+
+    <li class="py-2 flex items-baseline gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="flex flex-wrap items-baseline gap-x-2">
+          <span class="font-medium text-gray-900 dark:text-white">
+            {{ if $award_link }}<a href="{{ $award_link | safeURL }}" {{ $award_target | safeHTMLAttr }} class="hover:text-primary-600 dark:hover:text-primary-400">{{ end }}
+            {{ index $award "title" | markdownify | emojify }}
+            {{ if $award_link }}</a>{{ end }}
+          </span>
+          {{ with $date_str }}
+          <span class="text-sm text-gray-500 dark:text-gray-400">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ with $summary }}
+        <div class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{{ . | markdownify | emojify }}</div>
+        {{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</div>

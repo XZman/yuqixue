@@ -1,0 +1,87 @@
+{{/* Hugo Blox: Experience — local override, compact list (mirrors teaching/service style) */}}
+
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ if not (reflect.IsMap $content) }}{{ $content = dict }}{{ end }}
+{{ $design := $block.design }}
+{{ if not (reflect.IsMap $design) }}{{ $design = dict }}{{ end }}
+
+{{ $username := "me" }}
+{{ $username_raw := index $content "username" }}
+{{ if eq (printf "%T" $username_raw) "string" }}
+  {{ $username = strings.TrimSpace $username_raw }}
+{{ end }}
+{{ $profile := partial "functions/get_author_profile" $username }}
+
+{{ $title := "Work Experience" }}
+{{ with index $content "title" }}{{ $title = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+{{ $date_format := "Jan 2006" }}
+{{ $date_format_raw := index $design "date_format" }}
+{{ if eq (printf "%T" $date_format_raw) "string" }}
+  {{ $date_format = strings.TrimSpace $date_format_raw | default "Jan 2006" }}
+{{ end }}
+
+{{ $exp_raw := or $profile.experience $profile.work }}
+{{ $items := slice }}
+{{ if reflect.IsSlice $exp_raw }}
+  {{ range $exp_raw }}
+    {{ if reflect.IsMap . }}
+      {{ $role := "" }}{{ $org := "" }}{{ $start := "" }}{{ $end := "" }}{{ $summary := "" }}{{ $url := "" }}
+      {{ with index . "role" }}{{ $role = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ if not $role }}{{ with index . "position" }}{{ $role = strings.TrimSpace (printf "%v" .) }}{{ end }}{{ end }}
+      {{ with index . "org" }}{{ $org = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ if not $org }}{{ with index . "company_name" }}{{ $org = strings.TrimSpace (printf "%v" .) }}{{ end }}{{ end }}
+      {{ with index . "start" }}{{ $start = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ if not $start }}{{ with index . "date_start" }}{{ $start = strings.TrimSpace (printf "%v" .) }}{{ end }}{{ end }}
+      {{ with index . "end" }}{{ $end = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ if not $end }}{{ with index . "date_end" }}{{ $end = strings.TrimSpace (printf "%v" .) }}{{ end }}{{ end }}
+      {{ with index . "summary" }}{{ $summary = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "url" }}{{ $url = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+      {{ $s := "" }}{{ $e := "" }}
+      {{ if $start }}{{ $p := try (time $start) }}{{ if not $p.Err }}{{ $s = $p.Value | time.Format $date_format }}{{ else }}{{ $s = $start }}{{ end }}{{ end }}
+      {{ if $end }}{{ $p := try (time $end) }}{{ if not $p.Err }}{{ $e = $p.Value | time.Format $date_format }}{{ else }}{{ $e = $end }}{{ end }}{{ end }}
+      {{ $dr := "" }}
+      {{ if and $s $e }}{{ $dr = printf "%s – %s" $s $e }}{{ else if $s }}{{ $dr = printf "%s – Present" $s }}{{ else }}{{ $dr = $e }}{{ end }}
+
+      {{ $items = $items | append (dict "title" $role "subtitle" $org "date_str" $dr "summary" $summary "url" $url) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<div class="max-w-3xl mx-auto px-4">
+  {{ with $title }}<h2 class="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{{ . }}</h2>{{ end }}
+  {{ if $items }}
+  <ul class="divide-y divide-gray-200 dark:divide-gray-700 border-t border-gray-200 dark:border-gray-700">
+    {{ range $items }}
+    {{ $link := "" }}{{ $target := "" }}
+    {{ with .url }}
+      {{ $link = . }}
+      {{ $scheme := (urls.Parse $link).Scheme }}
+      {{ if not $scheme }}
+        {{ if not (hasPrefix $link "#") }}{{ $link = $link | relLangURL }}{{ end }}
+        {{ if eq (path.Ext $link) ".pdf" }}{{ $target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
+      {{ else if in (slice "http" "https") $scheme }}
+        {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
+      {{ end }}
+    {{ end }}
+    <li class="py-2 flex items-baseline gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="flex flex-wrap items-baseline gap-x-2">
+          <span class="font-medium text-gray-900 dark:text-white">
+            {{ if $link }}<a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hover:text-primary-600 dark:hover:text-primary-400">{{ end }}
+            {{ .title | markdownify | emojify }}
+            {{ if $link }}</a>{{ end }}
+          </span>
+          {{ with .date_str }}<span class="text-sm text-gray-500 dark:text-gray-400">{{ . }}</span>{{ end }}
+        </div>
+        {{ with .subtitle }}<div class="text-sm text-gray-700 dark:text-gray-300">{{ . | markdownify }}</div>{{ end }}
+        {{ with .summary }}<div class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{{ . | markdownify | emojify }}</div>{{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</div>
