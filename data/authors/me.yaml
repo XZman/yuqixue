@@ -12,21 +12,23 @@ postnominals: []
 role: ECE PhD Student
 bio: |
   I am a PhD student in ECE at the University of Illinois Urbana-Champaign,
-  advised by [Prof. Jian Huang](http://jianh.web.engr.illinois.edu/) in the
-  [Systems Platform Research Group](https://platformxlab.github.io/). My
-  research builds the software and hardware ecosystem for neural processing
-  units (NPUs), including accelerators such as TPUs. The NPU hardware
-  architecture provides massive computational power for machine learning
-  (ML) workloads, but their performance and efficiency depend highly on the
-  surrounding ecosystem: optimized compute kernels, programming abstractions,
-  compilers, software runtimes, and cluster resource orchestration. My work
-  develops the hardware support and software stack to make NPUs more performant,
-  cost-efficient, and energy-efficient.
+  advised by [Prof. Jian Huang](http://jianh.web.engr.illinois.edu/) in
+  [Illinois PlatformX](https://platformxlab.github.io/).
+  My research explores hardware/software co-design techniques for building
+  efficient ecosystems for Neural Processing Units (NPUs), such as TPUs.
+  Although the NPU hardware architecture provides massive computational power
+  for machine learning (ML) workloads, their real-world performance and
+  efficiency depend critically on the surrounding ecosystem.
+  My work aims to define the hardware/software interfaces and abstractions
+  that best balance complexity, expressiveness, performance, and efficiency
+  by determining which optimizations belong in hardware, which belong in software,
+  and which require coordinated support across both.
+  I build the hardware mechanisms and software systems to make NPUs faster,
+  more cost-effective, and more energy-efficient.
 
   Beyond NPUs, I am also interested in other ML accelerators such as GPUs
   and inter-core connected AI chips (i.e., Graphcore IPUs, Tenstorrent). I
-  am also exploring how to leverage AI/LLM agents to develop the NPU
-  ecosystem.
+  am also exploring how to leverage AI/LLM agents to develop the NPU ecosystem.
 
 affiliations:
   - name: University of Illinois Urbana-Champaign
