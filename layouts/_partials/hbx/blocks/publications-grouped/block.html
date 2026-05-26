@@ -26,16 +26,23 @@
   {{ $all = $section.RegularPages }}
 {{ end }}
 
-{{/* Detect whether any rendered publication has a co-primary author note */}}
-{{ $has_coprimary := false }}
+{{/* Detect co-primary author notes for visible vs hidden groups separately */}}
+{{ $has_coprimary_visible := false }}
+{{ $has_coprimary_hidden := false }}
 {{ range $groups_raw }}
   {{ $tg := index . "tag" }}
+  {{ $c := false }}
+  {{ $c_raw := index . "collapsed" }}
+  {{ if eq (printf "%T" $c_raw) "bool" }}{{ $c = $c_raw }}{{ end }}
   {{ range $all }}
     {{ $tags := .Params.tags | default slice }}
     {{ if and $tg (in $tags $tg) }}
       {{ $notes := .Params.author_notes | default slice }}
       {{ range $notes }}
-        {{ if . }}{{ $has_coprimary = true }}{{ end }}
+        {{ if . }}
+          {{ if $c }}{{ $has_coprimary_hidden = true }}
+          {{ else }}{{ $has_coprimary_visible = true }}{{ end }}
+        {{ end }}
       {{ end }}
     {{ end }}
   {{ end }}
@@ -47,8 +54,19 @@
   {{ end }}
   {{ with $text }}<p class="mb-4 text-gray-700 dark:text-gray-300">{{ . | markdownify | emojify }}</p>{{ end }}
 
+  {{/* Partition groups into visible vs hidden-by-default */}}
+  {{ $visible_groups := slice }}
+  {{ $hidden_groups := slice }}
+  {{ range $groups }}
+    {{ $c := false }}
+    {{ $c_raw := index . "collapsed" }}
+    {{ if eq (printf "%T" $c_raw) "bool" }}{{ $c = $c_raw }}{{ end }}
+    {{ if $c }}{{ $hidden_groups = $hidden_groups | append . }}
+    {{ else }}{{ $visible_groups = $visible_groups | append . }}{{ end }}
+  {{ end }}
+
   <ul class="space-y-6 list-none pl-0">
-    {{ range $groups }}
+    {{ range $visible_groups }}
     {{ $g_title := "" }}
     {{ $g_tag := "" }}
     {{ with index . "title" }}{{ $g_title = strings.TrimSpace (printf "%v" .) }}{{ end }}
@@ -196,7 +214,158 @@
     {{ end }}
   </ul>
 
-  {{ if $has_coprimary }}
+  {{ if $hidden_groups }}
+  <details class="group mt-6">
+    <summary class="inline-flex items-center gap-1.5 cursor-pointer text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 list-none select-none">
+      <span class="group-open:hidden">Show more publications</span>
+      <span class="hidden group-open:inline">Show fewer publications</span>
+      <svg class="w-4 h-4 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <ul class="space-y-6 list-none pl-0 mt-4">
+      {{ range $hidden_groups }}
+      {{ $g_title := "" }}
+      {{ $g_tag := "" }}
+      {{ with index . "title" }}{{ $g_title = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ with index . "tag" }}{{ $g_tag = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+      {{ $matched := slice }}
+      {{ if $g_tag }}
+        {{ range $all }}
+          {{ $tags := .Params.tags | default slice }}
+          {{ if in $tags $g_tag }}{{ $matched = $matched | append . }}{{ end }}
+        {{ end }}
+      {{ end }}
+
+      <li>
+        {{ with $g_title }}
+        <div class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2">{{ . | markdownify | emojify }}</div>
+        {{ end }}
+        {{ if $matched }}
+        <ul class="space-y-3 list-none pl-4 border-l-2 border-primary-200 dark:border-primary-800">
+          {{ range $matched }}
+          {{ $pub := . }}
+          {{ $authors := $pub.Params.authors | default slice }}
+          {{ $author_notes := $pub.Params.author_notes | default slice }}
+          {{ $venue := "" }}
+          {{ with $pub.Params.publication_short }}{{ $venue = printf "%v" . }}{{ end }}
+          {{ if not $venue }}{{ with $pub.Params.publication }}{{ $venue = printf "%v" . }}{{ end }}{{ end }}
+
+          {{ $pub_url := "" }}
+          {{ $pub_links := $pub.Params.links | default slice }}
+          {{ range $pub_links }}
+            {{ if and (not $pub_url) (reflect.IsMap .) }}
+              {{ $t := index . "type" | default "" }}
+              {{ $u := index . "url" | default "" }}
+              {{ if and (eq (printf "%v" $t) "pdf") $u }}{{ $pub_url = printf "%v" $u }}{{ end }}
+            {{ end }}
+          {{ end }}
+          {{ if not $pub_url }}
+            {{ with $pub.Params.hugoblox }}
+              {{ with index . "ids" }}
+                {{ $arxiv := index . "arxiv" | default "" }}
+                {{ $doi := index . "doi" | default "" }}
+                {{ if $arxiv }}{{ $pub_url = printf "https://arxiv.org/abs/%v" $arxiv }}
+                {{ else if $doi }}{{ $pub_url = printf "https://doi.org/%v" $doi }}{{ end }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ if not $pub_url }}
+            {{ range $pub_links }}
+              {{ if and (not $pub_url) (reflect.IsMap .) }}
+                {{ $u := index . "url" | default "" }}
+                {{ if $u }}{{ $pub_url = printf "%v" $u }}{{ end }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ $pub_target := "" }}
+          {{ if $pub_url }}
+            {{ $scheme := (urls.Parse $pub_url).Scheme }}
+            {{ if in (slice "http" "https") $scheme }}{{ $pub_target = "target=\"_blank\" rel=\"noopener\"" }}
+            {{ else if and (not $scheme) (eq (path.Ext $pub_url) ".pdf") }}{{ $pub_target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
+          {{ end }}
+
+          <li class="pl-3 relative">
+            <span class="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-primary-400 dark:bg-primary-500"></span>
+            {{ if $pub_url }}
+            <a href="{{ $pub_url | safeURL }}" {{ $pub_target | safeHTMLAttr }} class="font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400">{{ $pub.Title }}</a>
+            {{ else }}
+            <span class="font-medium text-gray-900 dark:text-white">{{ $pub.Title }}</span>
+            {{ end }}
+            {{ if $authors }}
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              {{ range $i, $a := $authors }}
+                {{ $name := "" }}
+                {{ $type := printf "%T" $a }}
+                {{ if eq $type "string" }}{{ $name = $a }}{{ end }}
+                {{ $authors_data := partialCached "functions/get_authors_data" $pub site.Language.Lang }}
+                {{ $author_record := index $authors_data $name }}
+                {{ $display := $name }}
+                {{ if $author_record }}
+                  {{ with index $author_record "name" }}
+                    {{ $nm := index . "display" }}
+                    {{ with $nm }}{{ $display = . }}{{ end }}
+                  {{ end }}
+                {{ end }}
+                {{ if gt $i 0 }}, {{ end }}{{ if eq $name "me" }}<u>{{ $display }}</u>{{ else }}{{ $display }}{{ end }}{{ if and $author_notes (lt $i (len $author_notes)) }}{{ $note := index $author_notes $i }}{{ if $note }}<sup>*</sup>{{ end }}{{ end }}
+              {{ end }}
+            </div>
+            {{ end }}
+            {{ with $venue }}
+            <div class="text-sm italic text-gray-500 dark:text-gray-400">{{ . | markdownify }}</div>
+            {{ end }}
+
+            {{ $extras := slice }}
+            {{ $label_map := dict "slides" "Slides" "video" "Video" "source" "Artifact" "code" "Artifact" "dataset" "Dataset" "poster" "Poster" "preprint" "Preprint" }}
+            {{ $seen_labels := slice }}
+            {{ range $pub_links }}
+              {{ if reflect.IsMap . }}
+                {{ $t := lower (printf "%v" (index . "type" | default "")) }}
+                {{ $u := printf "%v" (index . "url" | default "") }}
+                {{ $custom_label := printf "%v" (index . "label" | default "") }}
+                {{ $lbl := "" }}
+                {{ if eq $t "custom" }}{{ $lbl = $custom_label }}
+                {{ else if and (ne $t "pdf") (ne $t "") }}{{ $lbl = index $label_map $t }}{{ end }}
+                {{ if and $u $lbl (not (in $seen_labels $lbl)) }}
+                  {{ $extras = $extras | append (dict "label" $lbl "url" $u) }}
+                  {{ $seen_labels = $seen_labels | append $lbl }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+            {{ if $extras }}
+            <div class="mt-1 text-sm text-gray-600 dark:text-gray-400 flex flex-wrap items-baseline gap-x-1">
+              {{ range $i, $x := $extras }}
+                {{ $u := $x.url }}{{ $t := "" }}
+                {{ $scheme := (urls.Parse $u).Scheme }}
+                {{ if in (slice "http" "https") $scheme }}{{ $t = "target=\"_blank\" rel=\"noopener\"" }}
+                {{ else if and (not $scheme) (eq (path.Ext $u) ".pdf") }}{{ $t = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
+                {{ if gt $i 0 }}<span class="text-gray-400 dark:text-gray-500">·</span>{{ end }}
+                <a href="{{ $u | safeURL }}" {{ $t | safeHTMLAttr }} class="text-primary-600 dark:text-primary-400">[{{ $x.label }}]</a>
+              {{ end }}
+            </div>
+            {{ end }}
+
+            {{ $honors := $pub.Params.honors | default slice }}
+            {{ if $honors }}
+            <div class="mt-1 flex flex-wrap gap-1.5">
+              {{ range $honors }}
+              <span class="inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200 border border-amber-200 dark:border-amber-800">{{ . }}</span>
+              {{ end }}
+            </div>
+            {{ end }}
+          </li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      </li>
+      {{ end }}
+    </ul>
+    {{ if $has_coprimary_hidden }}
+    <p class="mt-4 text-xs text-gray-500 dark:text-gray-400"><sup>*</sup> Co-primary authors.</p>
+    {{ end }}
+  </details>
+  {{ end }}
+
+  {{ if $has_coprimary_visible }}
   <p class="mt-6 text-xs text-gray-500 dark:text-gray-400"><sup>*</sup> Co-primary authors.</p>
   {{ end }}
 </div>

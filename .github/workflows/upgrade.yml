@@ -11,9 +11,6 @@ on:
         options:
         - Stable
         - Beta (Preview)
-  schedule:
-    # Run at 05:00 on Monday
-    - cron: '0 5 * * 1'
 
 permissions:
   contents: write
@@ -92,7 +89,7 @@ jobs:
             - [ ] Merge this PR to apply the updates.
           branch: "chore/upgrade-hugoblox-${{ github.run_id }}"
           delete-branch: true
-          base: main
+          base: master
           labels: |
             dependencies
             automated-pr

@@ -87,6 +87,23 @@ teaching:
     date: Jan – Jul 2020
 
 service:
+  - category: Tutorial
+    items:
+      - title: "NexNPU: Building an Open-Source Ecosystem for Neural Processing Units (colocated with ISCA'26)"
+        date: "2026"
+  - category: Organizing Committee
+    items:
+      - title: Workshop on Hot Topics in System Infrastructure (HotInfra), Web Chair
+        url: https://hotinfra.org/
+        date: 2023, 2024, 2026
+  - category: Peer Review
+    items:
+      - title: IEEE Computer Architecture Letters
+        date: 2022, 2023, 2024
+      - title: ACM Transactions on Architecture and Code Optimization
+        date: 2024, 2025
+      - title: Student Program Committee — IEEE/ACM International Symposium on Microarchitecture (MICRO)
+        date: "2026"
   - category: Artifact Evaluation Committee
     items:
       - title: IEEE/ACM International Symposium on Microarchitecture (MICRO)
@@ -97,23 +114,6 @@ service:
         date: 2022, 2023
       - title: IEEE International Symposium on High-Performance Computer Architecture (HPCA)
         date: "2023"
-  - category: Peer Review
-    items:
-      - title: IEEE Computer Architecture Letters
-        date: 2022, 2023, 2024
-      - title: ACM Transactions on Architecture and Code Optimization
-        date: 2024, 2025
-      - title: Student Program Committee — IEEE/ACM International Symposium on Microarchitecture (MICRO)
-        date: "2026"
-  - category: Organizing Committee
-    items:
-      - title: Workshop on Hot Topics in System Infrastructure (HotInfra), Web Chair
-        url: https://hotinfra.org/
-        date: 2023, 2024, 2026
-  - category: Tutorial
-    items:
-      - title: "NexNPU: Building an Open-Source Ecosystem for Neural Processing Units (colocated with ISCA'26)"
-        date: "2026"
 
 awards:
   - title: IEEE Micro Top Picks from 2024 Computer Architecture Conferences

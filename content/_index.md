@@ -36,26 +36,21 @@ sections:
       title: Publications
       folder: publications
       groups:
-        - title: NPU Virtualization
-          tag: NPU Virtualization
-        - title: Power Management for NPU Chips
-          tag: NPU Power Management
+        - title: Hardware/Software Co-design for NPU Ecosystem
+          tag: NPU Co-design
         - title: ML Compiler for Inter-core Connected AI Chips
           tag: AI Compiler
+          collapsed: true
         - title: Memory and Storage for AI Accelerators
           tag: AI Memory and Storage
+          collapsed: true
         - title: Other Publications
           tag: Other Publications
-  - block: resume-experience
+          collapsed: true
+  - block: resume-service
     id: experience
     content:
-      username: me
-    design:
-      date_format: 'January 2006'
-      spacing:
-        padding: ['1.5rem', 0, '1.5rem', 0]
-  - block: resume-education
-    content:
+      title: Service
       username: me
     design:
       spacing:
@@ -67,16 +62,22 @@ sections:
     design:
       spacing:
         padding: ['1.5rem', 0, '1.5rem', 0]
-  - block: resume-teaching
+  - block: resume-education
     content:
-      title: Teaching
       username: me
     design:
       spacing:
         padding: ['1.5rem', 0, '1.5rem', 0]
-  - block: resume-service
+  - block: resume-experience
     content:
-      title: Service
+      username: me
+    design:
+      date_format: 'January 2006'
+      spacing:
+        padding: ['1.5rem', 0, '1.5rem', 0]
+  - block: resume-teaching
+    content:
+      title: Teaching
       username: me
     design:
       spacing:

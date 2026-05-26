@@ -13,7 +13,7 @@ publication_short: 'MICRO 2024'
 abstract: ''
 summary: 'Received Best Paper Runner-up. Selected as IEEE Micro Top Picks.'
 tags:
-  - NPU Virtualization
+  - NPU Co-design
   - NPU
   - Virtualization
   - Cloud Computing

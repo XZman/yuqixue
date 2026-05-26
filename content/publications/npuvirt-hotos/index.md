@@ -12,7 +12,7 @@ publication_short: 'HotOS 2023'
 abstract: ''
 summary: 'A short version is presented in HotInfra 2023.'
 tags:
-  - NPU Virtualization
+  - NPU Co-design
   - NPU
   - Virtualization
 featured: false

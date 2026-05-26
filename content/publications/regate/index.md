@@ -11,7 +11,7 @@ publication_short: 'MICRO 2025'
 abstract: ''
 summary: ''
 tags:
-  - NPU Power Management
+  - NPU Co-design
   - Computer Architecture
   - NPU
   - Sustainable AI
