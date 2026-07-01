@@ -92,6 +92,7 @@ service:
   - category: Tutorial
     items:
       - title: "NexNPU: Building an Open-Source Ecosystem for Neural Processing Units (colocated with ISCA'26)"
+        url: https://nexnpu.org/
         date: "2026"
   - category: Organizing Committee
     items:
