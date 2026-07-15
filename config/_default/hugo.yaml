@@ -12,6 +12,10 @@ baseURL: 'https://yuqixue.com/'
 ## LANGUAGE
 ############################
 
+# Show publications whose date is in the future (e.g. accepted papers for
+# upcoming conferences like MICRO 2026) rather than dropping them from lists.
+buildFuture: true
+
 defaultContentLanguage: en
 hasCJKLanguage: false
 defaultContentLanguageInSubdir: false
