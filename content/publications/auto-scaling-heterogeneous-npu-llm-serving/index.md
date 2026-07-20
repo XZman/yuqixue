@@ -19,4 +19,7 @@ tags:
 featured: false
 projects: []
 slides: ''
+links:
+  - type: pdf
+    url: /pdf/neuscale_micro26.pdf
 ---

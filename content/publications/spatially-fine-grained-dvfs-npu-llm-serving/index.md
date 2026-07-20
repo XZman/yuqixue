@@ -21,4 +21,7 @@ tags:
 featured: false
 projects: []
 slides: ''
+links:
+  - type: pdf
+    url: /pdf/eNPU_micro26.pdf
 ---
